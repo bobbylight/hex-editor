@@ -1,4 +1,7 @@
 classes/
 out/
 dist/
-
+build/
+.gradle/
+.idea/
+*.iml
