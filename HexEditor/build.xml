@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<!-- 
+
+	Ant build script for HexEditor.
+	This project is under a BSD-style license; see License.txt for details.
+
+	Author:  Robert Futrell
+	Version: 0.2
+	Date:    08mar2011
+
+-->
+
+
+<project name="HexEditor" default="make-jar" basedir=".">
+
+	<description>HexEditor build file</description>
+
+
+	<!-- Set global properties for this build. -->
+	<property name="app-name"         value="HexEditor"/>
+	<property name="source-dir"       location="src"/>
+	<property name="class-dir"        location="ant-classes"/>
+	<property name="app-dir"          location="dist"/>
+	<property name="debug"            value="true"/>
+	<property name="debuglevel"       value="lines,var,source"/>
+	<property name="java-level"       value="1.4"/>
+
+
+	<!-- Compiles all classes.  -->
+	<target name="compile" description="Compile the source.">
+		<delete includeEmptyDirs="true" quiet="true" dir="${class-dir}"/>
+		<mkdir dir="${class-dir}"/>
+		<javac srcdir="${source-dir}" destdir="${class-dir}" deprecation="yes"
+				debug="${debug}" debuglevel="${debuglevel}"
+				source="${java-level}" target="${java-level}">
+		</javac>
+	</target>
+
+
+	<!-- Build the executable jar.  -->
+	<target name="make-jar" depends="compile"
+			description="Create the HexEditor jar">
+		<delete includeEmptyDirs="true" quiet="true">
+			<fileset dir="${app-dir}"/>
+		</delete>
+		<mkdir dir="${app-dir}"/>
+		<jar destfile="${app-dir}/${app-name}.jar">
+			<fileset dir="${class-dir}"/>
+			<fileset dir="i18n"/>
+			<fileset file="License.txt"/>
+		</jar>
+		<copy file="License.txt" todir="${app-dir}"/>
+		<copy file="README.txt" todir="${app-dir}"/>
+	</target>
+
+
+	<target name="make-javadoc" depends="compile" description="Create javadoc">
+		<javadoc  destdir="javadoc" author="true" version="true"
+					breakiterator="yes">
+			<packageset dir="${source-dir}" defaultexcludes="yes">
+				<include name="org/**"/>
+			</packageset>
+		</javadoc>
+	</target>
+
+
+</project>
