@@ -3,7 +3,3 @@ plugins {
 }
 
 description = "HexEditor build file"
-
-tasks.jar {
-    from("License.txt")
-}
