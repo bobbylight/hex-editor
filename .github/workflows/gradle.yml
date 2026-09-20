@@ -29,5 +29,7 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
+    # Swing unit tests need a real (virtual) display; otherwise
+    # GraphicsEnvironment.isHeadless() is true and those tests are skipped.
     - name: Build with Gradle
-      run: ./gradlew build
+      run: xvfb-run ./gradlew build
