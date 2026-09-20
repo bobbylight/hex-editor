@@ -816,7 +816,7 @@ class HexTable extends JTable {
 			String temp = doc.getText(0, offs) + string +
 								doc.getText(offs, doc.getLength()-offs);
 			if (ensureByteRepresented(temp)) {
-				fb.insertString(offs, temp, attr);
+				fb.insertString(offs, string, attr);
 			}
 		}
 
