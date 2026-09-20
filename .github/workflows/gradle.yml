@@ -29,5 +29,13 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
+    # Swing unit tests need a real (virtual) display; otherwise
+    # GraphicsEnvironment.isHeadless() is true and those tests are skipped.
     - name: Build with Gradle
-      run: ./gradlew build
+      run: xvfb-run ./gradlew build
+
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./HexEditor/build/reports/jacoco/test/jacocoTestReport.xml

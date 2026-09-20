@@ -1,4 +1,7 @@
 # hex-editor
+![Java Build](https://github.com/bobbylight/hex-editor/actions/workflows/gradle.yml/badge.svg)
+![Java Build](https://github.com/bobbylight/hex-editor/actions/workflows/codeql-analysis.yml/badge.svg)
+[![codecov](https://codecov.io/gh/bobbylight/hex-editor/graph/badge.svg?token=R2LM94X3JS)](https://codecov.io/gh/bobbylight/hex-editor)
 
 A Swing `HexEditor` component, plus a small demo application showing how to use it.
 
