@@ -67,10 +67,8 @@ jobs:
 
     # Swing unit tests need a real (virtual) display; otherwise
     # GraphicsEnvironment.isHeadless() is true and those tests are skipped.
-    - name: Build
-      uses: hankolsen/xvfb-action@master
-      with:
-        run: ./gradlew build --warning-mode all
+    - name: Build with Gradle
+      run: xvfb-run ./gradlew build --warning-mode all
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v4

@@ -32,7 +32,7 @@ jobs:
     # Swing unit tests need a real (virtual) display; otherwise
     # GraphicsEnvironment.isHeadless() is true and those tests are skipped.
     - name: Build with Gradle
-      run: xvfb-run ./gradlew build
+      run: xvfb-run ./gradlew build --warning-mode all
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v5
