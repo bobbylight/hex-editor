@@ -9,11 +9,7 @@ import org.fife.ui.SwingRunnerExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -105,7 +101,7 @@ class CellEditorTest {
 		boolean started = table.editCellAt(0, 0);
 		assertTrue(started);
 
-		assertTrue(table.getEditorComponent() instanceof JTextField);
+        assertInstanceOf(JTextField.class, table.getEditorComponent());
 		assertEquals(0, table.getEditingRow());
 		assertEquals(0, table.getEditingColumn());
 

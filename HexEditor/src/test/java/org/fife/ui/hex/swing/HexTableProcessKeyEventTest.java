@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 /**
- * Unit tests for {@link HexTable#processKeyEvent(KeyEvent)}.
+ * Unit tests for {@code HexTable.processKeyEvent(KeyEvent)}.
  */
 @ExtendWith(SwingRunnerExtension.class)
 class HexTableProcessKeyEventTest {

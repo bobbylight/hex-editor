@@ -255,7 +255,7 @@ public class HexTableModel extends AbstractTableModel {
 		byte[] added = null;
 		if (bytes!=null && bytes.length>0) {
 			doc.insertBytes(offset, bytes);
-			added = (byte[])bytes.clone();
+			added = bytes.clone();
 		}
 
 		if (removed!=null || added!=null) {

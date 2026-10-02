@@ -112,12 +112,10 @@ public class SelectionChangedEvent extends EventObject {
 
 
 	public String toString() {
-		StringBuffer result = new StringBuffer("Old selection: [");
-		result.append(getPreviousSelecStart()).append(", ");
-		result.append(getPreviousSelecEnd()).append("]; New selection: [");
-		result.append(getNewSelecStart()).append(", ");
-		result.append(getNewSelecEnd()).append(']');
-		return result.toString();
+        return "Old selection: [" + getPreviousSelecStart() + ", " +
+                getPreviousSelecEnd() + "]; New selection: [" +
+                getNewSelecStart() + ", " +
+                getNewSelecEnd() + ']';
 	}
 
 

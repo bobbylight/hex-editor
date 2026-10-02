@@ -1,6 +1,6 @@
 <!--
   Start with a 1-2 sentence description of the PR. What is
-  the new feature or change, and why if it's releant.
+  the new feature or change, and why if it's relevant.
 -->
 
 ## Summary
@@ -19,7 +19,7 @@
 ## Testing
 
 List any new unit or integration tests you wrote or changed.
-If anything hsould be manually tested, include it as well.
+If anything should be manually tested, include it as well.
 This can stay fairly high-level. Items should be listed
 as a list of markdown checkboxes, with anything you've done
 yourself (e.g. run unit tests) already prechecked.

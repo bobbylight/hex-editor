@@ -26,16 +26,7 @@
  */
 package org.fife.ui.hex.swing;
 
-import java.awt.AWTEvent;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
@@ -190,10 +181,10 @@ class HexTable extends JTable {
 	/**
 	 * Changes the selected byte range.
 	 *
-	 * @param row
-	 * @param col
-	 * @param toggle
-	 * @param extend
+	 * @param row The new row.
+	 * @param col The new column.
+	 * @param toggle TODO: Unused and should be removed.
+	 * @param extend Whether to extend the selection (vs. change it).
 	 * @see #changeSelectionByOffset(int, boolean)
 	 * @see #setSelectedRows(int, int)
 	 * @see #setSelectionByOffsets(int, int)
@@ -240,8 +231,8 @@ class HexTable extends JTable {
 	/**
 	 * Changes the selection by an offset into the bytes being edited.
 	 *
-	 * @param offset
-	 * @param extend
+	 * @param offset The new offset.
+	 * @param extend Whether to extend the selection (vs. change it).
 	 * @see #changeSelection(int, int, boolean, boolean)
 	 * @see #setSelectedRows(int, int)
 	 * @see #setSelectionByOffsets(int, int)
@@ -289,7 +280,8 @@ class HexTable extends JTable {
 	 * 
 	 * @see #addSelectionChangedListener(SelectionChangedListener)
 	 * @see #removeSelectionChangedListener(SelectionChangedListener)
-	 * @param e Contains proper information.
+	 * @param prevSmallest The previous selection start index.
+	 * @param prevLargest The previous selectio end index.
 	 */
 	private void fireSelectionChangedEvent(int prevSmallest, int prevLargest) {
 
@@ -341,8 +333,8 @@ class HexTable extends JTable {
 	 * @return The rendering hints, or <code>null</code> if they cannot be
 	 *         determined.
 	 */
-	private Map getDesktopAntiAliasHints() {
-		return (Map)getToolkit().getDesktopProperty("awt.font.desktophints");
+	private Map<?, ?> getDesktopAntiAliasHints() {
+		return (Map<?, ?>)getToolkit().getDesktopProperty("awt.font.desktophints");
 	}
 
 
@@ -535,7 +527,7 @@ class HexTable extends JTable {
     
 
 	/**
-	 * Removes a listener who isn't any longer interested whether the text
+	 * Removes a listener that's no longer interested whether the text
 	 * selection from the hex editor becomes changed.
 	 * 
 	 * @param l The concerning previous prospect.
@@ -563,7 +555,7 @@ class HexTable extends JTable {
 	 * Toggles whether the cells in the hex editor are editable by clicking
 	 * in them.
 	 *
-	 * @param Whether individual hex editor cells should be editable.
+	 * @param cellEditable Whether individual hex editor cells should be editable.
 	 */
 	public void setCellEditable(boolean cellEditable) {
 		cellEditor.setEditable(cellEditable);
@@ -678,7 +670,7 @@ class HexTable extends JTable {
 		public boolean stopCellEditing() {
 			// Prevent the user from entering empty string as a value.
 			String value = (String)getCellEditorValue();
-			if (value.length()==0) {
+			if (value.isEmpty()) {
 				UIManager.getLookAndFeel().provideErrorFeedback(null);
 				return false;
 			}
@@ -704,7 +696,7 @@ class HexTable extends JTable {
 		private static final long serialVersionUID = 1L;
 
 		private Point highlight;
-		private Map desktopAAHints;
+		private Map<?, ?> desktopAAHints;
 
 		public CellRenderer() {
 			highlight = new Point();
@@ -763,7 +755,7 @@ class HexTable extends JTable {
 			}
 
 			Graphics2D g2d = (Graphics2D)g;
-			Object oldHints = null;
+			RenderingHints oldHints = null;
 			if (desktopAAHints!=null) {
 				oldHints = g2d.getRenderingHints();
 				g2d.addRenderingHints(desktopAAHints);
@@ -780,7 +772,7 @@ class HexTable extends JTable {
 
 			// Restore rendering hints appropriately.
 			if (desktopAAHints!=null) {
-				g2d.addRenderingHints((Map)oldHints);
+				g2d.addRenderingHints(oldHints);
 			}
 
 		}
