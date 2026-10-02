@@ -24,7 +24,7 @@ class HexEditorTransferHandler extends TransferHandler {
 		if (!editor.isEnabled()) {
 			return false;
 		}
-		return getImportFlavor(flavors, editor)!=null;
+		return getImportFlavor(flavors)!=null;
 	}
 
 
@@ -36,8 +36,7 @@ class HexEditorTransferHandler extends TransferHandler {
 		for (int i=end; i>=start; i--) {
 			array[i-start] = e.getByte(i);
 		}
-		ByteArrayTransferable bat = new ByteArrayTransferable(start, array);
-		return bat;
+		return new ByteArrayTransferable(start, array);
 	}
 
 
@@ -51,12 +50,12 @@ class HexEditorTransferHandler extends TransferHandler {
 	}
 
 
-	private DataFlavor getImportFlavor(DataFlavor[] flavors, HexEditor e) {
-		for (int i=0; i<flavors.length; i++) {
-			if (flavors[i].equals(DataFlavor.stringFlavor)) {
-				return flavors[i];
-			}
-		}
+	private DataFlavor getImportFlavor(DataFlavor[] flavors) {
+        for (DataFlavor flavor : flavors) {
+            if (flavor.equals(DataFlavor.stringFlavor)) {
+                return flavor;
+            }
+        }
 		return null;
 	}
 
@@ -86,7 +85,7 @@ class HexEditorTransferHandler extends TransferHandler {
 		HexEditor e = (HexEditor)c;
 		boolean imported = false;
 
-		DataFlavor flavor = getImportFlavor(t.getTransferDataFlavors(), e);
+		DataFlavor flavor = getImportFlavor(t.getTransferDataFlavors());
 		if (flavor!=null) {
 			try {
 				Object data = t.getTransferData(flavor);

@@ -19,7 +19,7 @@ public interface HexEditorListener extends EventListener {
 	 *
 	 * @param e The event object.
 	 */
-	public void hexBytesChanged(HexEditorEvent e);
+	void hexBytesChanged(HexEditorEvent e);
 
 
 }

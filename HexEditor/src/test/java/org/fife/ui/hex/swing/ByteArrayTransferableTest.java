@@ -2,16 +2,11 @@ package org.fife.ui.hex.swing;
 
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.IOException;
 import java.io.Reader;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -87,7 +82,7 @@ class ByteArrayTransferableTest {
 		byte[] bytes = "hello".getBytes();
 		ByteArrayTransferable bat = new ByteArrayTransferable(0, bytes);
 		Object data = bat.getTransferData(DataFlavor.plainTextFlavor);
-		assertTrue(data instanceof Reader);
+        assertInstanceOf(Reader.class, data);
 		char[] buf = new char[5];
 		int read = ((Reader)data).read(buf);
 		assertEquals(5, read);

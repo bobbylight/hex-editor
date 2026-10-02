@@ -46,7 +46,7 @@ public interface SelectionChangedListener extends EventListener {
 	 * @param event Contains specific information about the previous selection
 	 *        state and the new one.
 	 */
-	public void selectionChanged(SelectionChangedEvent event);
+	void selectionChanged(SelectionChangedEvent event);
 
 
 }

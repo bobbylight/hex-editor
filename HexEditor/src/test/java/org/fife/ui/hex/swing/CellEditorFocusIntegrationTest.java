@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 

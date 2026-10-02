@@ -11,9 +11,7 @@ import org.fife.ui.SwingRunnerExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -80,7 +78,7 @@ class HexEditorTransferHandlerTest {
 
 		Transferable transferable = handler.createTransferable(editor);
 
-		assertTrue(transferable instanceof ByteArrayTransferable);
+        assertInstanceOf(ByteArrayTransferable.class, transferable);
 		ByteArrayTransferable bat = (ByteArrayTransferable)transferable;
 		assertEquals(1, bat.getOffset());
 		assertEquals(2, bat.getLength());

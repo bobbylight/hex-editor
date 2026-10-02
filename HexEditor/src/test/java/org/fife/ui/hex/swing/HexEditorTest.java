@@ -15,10 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -341,9 +338,9 @@ class HexEditorTest {
 	void testSetShowColumnHeader() {
 		HexEditor editor = new HexEditor();
 		editor.setShowColumnHeader(true);
-		assertTrue(editor.getColumnHeader().getView() != null);
+        assertNotNull(editor.getColumnHeader().getView());
 		editor.setShowColumnHeader(false);
-		assertEquals(null, editor.getColumnHeader().getView());
+        assertNull(editor.getColumnHeader().getView());
 	}
 
 
@@ -351,9 +348,9 @@ class HexEditorTest {
 	void testSetShowRowHeader() {
 		HexEditor editor = new HexEditor();
 		editor.setShowRowHeader(true);
-		assertTrue(editor.getRowHeader().getView() != null);
+        assertNotNull(editor.getRowHeader().getView());
 		editor.setShowRowHeader(false);
-		assertEquals(null, editor.getRowHeader().getView());
+        assertNull(editor.getRowHeader().getView());
 	}
 
 

@@ -32,8 +32,7 @@ import javax.swing.UIManager;
 
 
 /**
- * A demo application for the Swing {@link org.fife.ui.swing.hex.HexEditor}
- * component.
+ * A demo application for the Swing {@code HexEditor} component.
  *
  * @author Robert Futrell
  * @version 1.0
@@ -65,17 +64,15 @@ public class HexEditorDemoApp extends JFrame {
 	 * @param args The command line arguments.
 	 */
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UIManager.setLookAndFeel(
-							UIManager.getSystemLookAndFeelClassName());
-				} catch (Exception e) {
-					e.printStackTrace(); // Do something to keep FindBugs happy
-				}
-				new HexEditorDemoApp().setVisible(true);
-			}
-		});
+		SwingUtilities.invokeLater(() -> {
+            try {
+                UIManager.setLookAndFeel(
+                        UIManager.getSystemLookAndFeelClassName());
+            } catch (Exception e) {
+                e.printStackTrace(); // Do something to keep FindBugs happy
+            }
+            new HexEditorDemoApp().setVisible(true);
+        });
 	}
 
 

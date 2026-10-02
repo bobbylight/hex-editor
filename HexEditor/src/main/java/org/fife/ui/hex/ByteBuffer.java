@@ -56,18 +56,15 @@ public class ByteBuffer {
 		buffer = new byte[size];
 
 		if (size>0) {
-			BufferedInputStream in = new BufferedInputStream(
-										new FileInputStream(file));
-			int pos = 0;
-			int count = 0;
-			try {
-				while (pos<buffer.length &&
-						(count=in.read(buffer, pos, buffer.length-pos))>-1) {
-					pos += count;
-				}
-			} finally {
-				in.close();
-			}
+            try (BufferedInputStream in = new BufferedInputStream(
+                    new FileInputStream(file))) {
+                int pos = 0;
+                int count;
+                while (pos < buffer.length &&
+                        (count = in.read(buffer, pos, buffer.length - pos)) > -1) {
+                    pos += count;
+                }
+            }
 		}
 
 	}
@@ -82,7 +79,7 @@ public class ByteBuffer {
 	public ByteBuffer(InputStream in) throws IOException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		buffer = new byte[4096]; // Use as a temporary buffer.
-		int count = 0;
+		int count;
 		while ((count=in.read(buffer, 0,buffer.length))>-1) {
 			baos.write(buffer, 0,count);
 		}

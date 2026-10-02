@@ -453,7 +453,7 @@ public class HexEditor extends JScrollPane {
 
 
 	/**
-	 * Removes a listener who isn't any longer interested whether the text
+	 * Removes a listener that's no longer interested whether the text
 	 * selection from the hex editor becomes changed.
 	 * 
 	 * @param l The concerning previous prospect.

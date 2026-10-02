@@ -43,7 +43,7 @@ import javax.swing.event.TableModelListener;
  * @author Robert Futrell
  * @version 1.0
  */
-class HexEditorRowHeader extends JList implements TableModelListener {
+class HexEditorRowHeader extends JList<String> implements TableModelListener {
 
 	private static final long serialVersionUID = 1L;
 
@@ -120,7 +120,7 @@ class HexEditorRowHeader extends JList implements TableModelListener {
 	 * @author Robert Futrell
 	 * @version 1.0
 	 */
-	private class CellRenderer extends DefaultListCellRenderer {
+	private static class CellRenderer extends DefaultListCellRenderer {
 
 		private static final long serialVersionUID = 1L;
 
@@ -147,13 +147,13 @@ class HexEditorRowHeader extends JList implements TableModelListener {
 	 * @author Robert Futrell
 	 * @version 1.0
 	 */
-	private static class RowHeaderListModel extends AbstractListModel {
+	private static class RowHeaderListModel extends AbstractListModel<String> {
 
 		private static final long serialVersionUID = 1L;
 
 		private int size;
 
-		public Object getElementAt(int index) {
+		public String getElementAt(int index) {
 			return "0x" + Integer.toHexString(index*16);
 		}
 
@@ -178,7 +178,7 @@ class HexEditorRowHeader extends JList implements TableModelListener {
 
 	/**
 	 * Border for the entire row header.  This draws a line to separate the
-	 * header from the table contents, and gives a small amount of whitespace
+	 * header from the table contents and gives a small amount of whitespace
 	 * to separate the two.
 	 *
 	 * @author Robert Futrell
@@ -195,8 +195,6 @@ class HexEditorRowHeader extends JList implements TableModelListener {
 	    public void paintBorder(Component c, Graphics g, int x, int y,
 	    						int width, int height) {
 	    	x = x + width - this.right;
-//	    	g.setColor(table.getBackground());
-//	    	g.fillRect(x,y, width,height);
 	    	g.setColor(table.getGridColor());
 	    	g.drawLine(x,y, x,y+height);
 	    }

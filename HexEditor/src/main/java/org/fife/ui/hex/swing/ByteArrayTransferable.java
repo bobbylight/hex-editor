@@ -3,7 +3,6 @@ package org.fife.ui.hex.swing;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.IOException;
 import java.io.StringReader;
 
 
@@ -32,7 +31,7 @@ class ByteArrayTransferable implements Transferable {
 	public ByteArrayTransferable(int offset, byte[] bytes) {
 		this.offset = offset;
 		if (bytes!=null) {
-			this.bytes = (byte[])bytes.clone();
+			this.bytes = bytes.clone();
 		}
 		else {
 			this.bytes = new byte[0];
@@ -69,11 +68,10 @@ class ByteArrayTransferable implements Transferable {
 	 * @param flavor Dictates in what format the data should be returned.
 	 * @throws UnsupportedFlavorException If the specified flavor is not
 	 *         supported.
-	 * @throws IOException If an IO error occurs.
 	 * @see DataFlavor#getRepresentationClass()
 	 */
 	public Object getTransferData(DataFlavor flavor)
-			throws UnsupportedFlavorException, IOException {
+			throws UnsupportedFlavorException {
 		if (flavor.equals(FLAVORS[0])) {
 			return new String(bytes); // Use platform default charset.
 		}
@@ -92,7 +90,7 @@ class ByteArrayTransferable implements Transferable {
 	 * @return An array of data flavors in which this data can be transferred.
 	 */
 	public DataFlavor[] getTransferDataFlavors() {
-		return (DataFlavor[])FLAVORS.clone();
+		return FLAVORS.clone();
 	}
 
 
@@ -103,11 +101,11 @@ class ByteArrayTransferable implements Transferable {
 	 * @return Whether the specified flavor is supported.
 	 */
 	public boolean isDataFlavorSupported(DataFlavor flavor) {
-		for (int i=0; i<FLAVORS.length; i++) {
-			if (flavor.equals(FLAVORS[i])) {
-				return true;
-			}
-		}
+        for (DataFlavor dataFlavor : FLAVORS) {
+            if (flavor.equals(dataFlavor)) {
+                return true;
+            }
+        }
 		return false;
 	}
 

@@ -31,8 +31,7 @@ import javax.swing.UIManager;
 
 
 /**
- * A demo applet for the Swing {@link org.fife.ui.swing.hex.HexEditor}
- * component.
+ * A demo applet for the Swing {@code HexEditor} component.
  *
  * @author Robert Futrell
  * @version 1.0

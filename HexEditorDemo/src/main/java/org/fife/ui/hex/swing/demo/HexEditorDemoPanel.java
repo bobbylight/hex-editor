@@ -64,11 +64,11 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	private JCheckBox colHeaderCB;
 	private JCheckBox rowHeaderCB;
 	private JCheckBox showGridCB;
-	private JComboBox lafCombo;
+	private JComboBox<String> lafCombo;
 	private JCheckBox altRowBGCB;
 	private JCheckBox altColBGCB;
 	private JCheckBox highlightAsciiSelCB;
-	private JComboBox highlightAsciiSelCombo;
+	private JComboBox<Color> highlightAsciiSelCombo;
 	private JCheckBox lowBytePaddingCB;
 	private JCheckBox cellEditableCB;
 	private JTextField infoField;
@@ -172,12 +172,12 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 			}
 			else if ("Nimbus".equals(value)) {
 				LookAndFeelInfo[] infos = UIManager.getInstalledLookAndFeels();
-				for (int i=0; i<infos.length; i++) {
-					if ("Nimbus".equals(infos[i].getName())) {
-						laf = infos[i].getClassName();
-						break;
-					}
-				}
+                for (LookAndFeelInfo info : infos) {
+                    if ("Nimbus".equals(info.getName())) {
+                        laf = info.getClassName();
+                        break;
+                    }
+                }
 			}
 			try {
 				UIManager.setLookAndFeel(laf);
@@ -331,7 +331,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	private String getInfoString(String key, int offs, int param) {
 		String text = msg.getString(key);
 		text = MessageFormat.format(text,
-				new Object[] { new Integer(offs), new Integer(param) });
+				new Object[] { offs, param });
 		return text;
 	}
 
@@ -339,8 +339,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	private String getInfoString(String key, int offs, int param1, int param2) {
 		String text = msg.getString(key);
 		text = MessageFormat.format(text,
-				new Object[] { new Integer(offs), new Integer(param1),
-								new Integer(param2) });
+				new Object[] { offs, param1, param2 });
 		return text;
 	}
 
@@ -387,7 +386,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	 */
 	public void hexBytesChanged(HexEditorEvent e) {
 
-		String text = null;
+		String text;
 
 		if (e.isModification()) {
 			text = getInfoString("InfoFieldModified",
@@ -413,7 +412,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 
 		text = msg.getString("SizeField");
 		text = MessageFormat.format(text,
-				new Object[] { new Integer(e.getHexEditor().getByteCount()) });
+				new Object[] { e.getHexEditor().getByteCount() });
 		sizeField.setText(text);
 
 	}
@@ -446,7 +445,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	/**
 	 * Called when the selection changes in the hex editor.
 	 *
-	 * @param An object describing the selection.
+	 * @param e An object describing the selection.
 	 */
 	public void selectionChanged(SelectionChangedEvent e) {
 		int offs = e.getNewSelecStart();
@@ -570,7 +569,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 			highlightAsciiSelCB.addActionListener(HexEditorDemoPanel.this);
 			temp.add(highlightAsciiSelCB);
 
-			highlightAsciiSelCombo = new JComboBox();
+			highlightAsciiSelCombo = new JComboBox<>();
 			highlightAsciiSelCombo.setRenderer(new ColorCellRenderer());
 			highlightAsciiSelCombo.addItem(new Color(255,255,192));
 			highlightAsciiSelCombo.addItem(new Color(224,224,255));
@@ -587,7 +586,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 			temp = new JPanel(new BorderLayout());
 			temp.add(new JLabel(msg.getString("LafLabel")),
 									BorderLayout.LINE_START);
-			lafCombo = new JComboBox();
+			lafCombo = new JComboBox<>();
 			lafCombo.addItem("System");
 			lafCombo.addItem("Metal");
 			lafCombo.addItem("Motif");
