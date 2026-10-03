@@ -3,6 +3,7 @@ package org.fife.ui.hex.swing;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import javax.swing.TransferHandler;
@@ -71,7 +72,7 @@ class HexEditorTransferHandlerTest {
 
 
 	@Test
-	void testCreateTransferable() throws Exception {
+	void testCreateTransferable() throws IOException, UnsupportedFlavorException {
 
 		HexEditor editor = createEditorWithBytes(new byte[] { 'a', 'b', 'c', 'd' });
 		editor.setSelectedRange(1, 2);
@@ -88,7 +89,7 @@ class HexEditorTransferHandlerTest {
 
 
 	@Test
-	void testExportDone_moveAction_removesTransferredBytes() throws Exception {
+	void testExportDone_moveAction_removesTransferredBytes() throws IOException {
 
 		HexEditor editor = createEditorWithBytes(new byte[] { 'a', 'b', 'c', 'd' });
 		editor.setSelectedRange(1, 2);
@@ -104,7 +105,7 @@ class HexEditorTransferHandlerTest {
 
 
 	@Test
-	void testExportDone_copyAction_doesNotRemoveBytes() throws Exception {
+	void testExportDone_copyAction_doesNotRemoveBytes() throws IOException {
 
 		HexEditor editor = createEditorWithBytes(new byte[] { 'a', 'b', 'c', 'd' });
 		editor.setSelectedRange(1, 2);
@@ -142,12 +143,15 @@ class HexEditorTransferHandlerTest {
 	void testImportData_unsupportedFlavor_returnsFalse() throws IOException {
 		HexEditor editor = createEditorWithBytes(new byte[] { 'a' });
 		Transferable transferable = new Transferable() {
+			@Override
 			public DataFlavor[] getTransferDataFlavors() {
 				return new DataFlavor[] { DataFlavor.imageFlavor };
 			}
+			@Override
 			public boolean isDataFlavorSupported(DataFlavor flavor) {
 				return flavor.equals(DataFlavor.imageFlavor);
 			}
+			@Override
 			public Object getTransferData(DataFlavor flavor) {
 				return null;
 			}

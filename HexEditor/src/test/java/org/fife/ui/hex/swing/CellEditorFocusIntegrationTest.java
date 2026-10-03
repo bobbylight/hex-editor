@@ -2,6 +2,8 @@ package org.fife.ui.hex.swing;
 
 import java.awt.GraphicsEnvironment;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -9,6 +11,7 @@ import javax.swing.SwingUtilities;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
+import org.opentest4j.TestAbortedException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -39,7 +42,8 @@ class CellEditorFocusIntegrationTest {
 
 
 	@Test
-	void testFocusGained_selectsAllTextInEditor() throws Exception {
+	void testFocusGained_selectsAllTextInEditor() throws TestAbortedException, IOException, InterruptedException,
+		InvocationTargetException {
 
 		Assumptions.assumeFalse(GraphicsEnvironment.isHeadless());
 
@@ -72,8 +76,8 @@ class CellEditorFocusIntegrationTest {
 	 * something a window-manager-less virtual display (as is sometimes used
 	 * in CI) can't provide, no matter how long we wait.
 	 */
-	private static void waitUntil(java.util.function.BooleanSupplier condition,
-									String message) throws InterruptedException {
+	private static void waitUntil(java.util.function.BooleanSupplier condition, String message)
+	                               throws InterruptedException {
 		long deadline = System.currentTimeMillis() + 2000;
 		while (!condition.getAsBoolean()) {
 			if (System.currentTimeMillis() > deadline) {

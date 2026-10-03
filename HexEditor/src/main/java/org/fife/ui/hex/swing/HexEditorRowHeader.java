@@ -74,6 +74,7 @@ class HexEditorRowHeader extends JList<String> implements TableModelListener {
 	}
 
 
+	@Override
 	public void addSelectionInterval(int anchor, int lead) {
 		super.addSelectionInterval(anchor, lead);
 		int min = Math.min(anchor, lead);
@@ -82,6 +83,7 @@ class HexEditorRowHeader extends JList<String> implements TableModelListener {
 	}
 
 
+	@Override
 	public void removeSelectionInterval(int index0, int index1) {
 		super.removeSelectionInterval(index0, index1);
 		int anchor = getAnchorSelectionIndex();
@@ -90,6 +92,7 @@ class HexEditorRowHeader extends JList<String> implements TableModelListener {
 	}
 
 
+	@Override
 	public void setSelectionInterval(int anchor, int lead) {
 		super.setSelectionInterval(anchor, lead);
 		int min = Math.min(anchor, lead);
@@ -109,6 +112,7 @@ class HexEditorRowHeader extends JList<String> implements TableModelListener {
 	}
 
 
+	@Override
 	public void tableChanged(TableModelEvent e) {
 		syncRowCount();
 	}
@@ -128,8 +132,9 @@ class HexEditorRowHeader extends JList<String> implements TableModelListener {
 			setHorizontalAlignment(JLabel.RIGHT);
 		}
 
-		public Component getListCellRendererComponent(JList list, Object value,
-							int index, boolean selected, boolean hasFocus) {
+		@Override
+		public Component getListCellRendererComponent(JList list, Object value, int index, boolean selected,
+		                                               boolean hasFocus) {
 			// Never paint cells as "selected."
 			super.getListCellRendererComponent(list, value, index,
 												false, hasFocus);
@@ -152,10 +157,12 @@ class HexEditorRowHeader extends JList<String> implements TableModelListener {
 
 		private int size;
 
+		@Override
 		public String getElementAt(int index) {
 			return "0x" + Integer.toHexString(index*16);
 		}
 
+		@Override
 		public int getSize() {
 			return size;
 		}
@@ -191,8 +198,8 @@ class HexEditorRowHeader extends JList<String> implements TableModelListener {
 			super(0,0,0,2);
 		}
 
-	    public void paintBorder(Component c, Graphics g, int x, int y,
-	    						int width, int height) {
+	    @Override
+	    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
 	    	x = x + width - this.right;
 	    	g.setColor(table.getGridColor());
 	    	g.drawLine(x,y, x,y+height);

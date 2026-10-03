@@ -27,6 +27,7 @@
 package org.fife.ui.hex;
 
 import java.io.*;
+import java.nio.file.Files;
 
 
 /**
@@ -70,14 +71,10 @@ public class ByteBuffer {
 	public ByteBuffer(File file) throws IOException {
 
 		int size = (int)file.length();
-		if (size<0) { // Probably never happens.
-			throw new IOException("Negative file length: " + size);
-		}
 		buffer = new byte[size];
 
 		if (size>0) {
-            try (BufferedInputStream in = new BufferedInputStream(
-                    new FileInputStream(file))) {
+            try (BufferedInputStream in = new BufferedInputStream(Files.newInputStream(file.toPath()))) {
                 int pos = 0;
                 int count;
                 while (pos < buffer.length &&

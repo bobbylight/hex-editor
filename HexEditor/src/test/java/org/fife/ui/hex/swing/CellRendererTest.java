@@ -34,8 +34,7 @@ class CellRendererTest {
 	}
 
 
-	private static Color renderAndGetBackground(HexTable table, Object value,
-			boolean selected, int row, int col) {
+	private static Color renderAndGetBackground(HexTable table, Object value, boolean selected, int row, int col) {
 		TableCellRenderer renderer = table.getDefaultRenderer(Object.class);
 		return renderer.getTableCellRendererComponent(table, value, selected, false, row, col)
 				.getBackground();

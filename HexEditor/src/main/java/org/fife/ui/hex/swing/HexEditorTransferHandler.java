@@ -19,6 +19,7 @@ class HexEditorTransferHandler extends TransferHandler {
 	private static final long serialVersionUID = 1L;
 
 
+	@Override
 	public boolean canImport(JComponent comp, DataFlavor[] flavors) {
 		HexEditor editor = (HexEditor)comp;
 		if (!editor.isEnabled()) {
@@ -28,6 +29,7 @@ class HexEditorTransferHandler extends TransferHandler {
 	}
 
 
+	@Override
 	protected Transferable createTransferable(JComponent c) {
 		HexEditor e = (HexEditor)c;
 		int start = e.getSmallestSelectionIndex();
@@ -40,6 +42,7 @@ class HexEditorTransferHandler extends TransferHandler {
 	}
 
 
+	@Override
 	protected void exportDone(JComponent source, Transferable data, int action){
 		if (action==MOVE) {
 			ByteArrayTransferable bat = (ByteArrayTransferable)data;
@@ -67,6 +70,7 @@ class HexEditorTransferHandler extends TransferHandler {
 	 * @param c The <code>HexEditor</code>.
 	 * @return The permitted operations.
 	 */
+	@Override
 	public int getSourceActions(JComponent c) {
 		HexEditor e = (HexEditor)c;
 		return e.isEnabled() ? COPY_OR_MOVE : COPY;
@@ -80,6 +84,7 @@ class HexEditorTransferHandler extends TransferHandler {
 	 * @param t The data to be imported.
 	 * @return Whether the data was successfully imported.
 	 */
+	@Override
 	public boolean importData(JComponent c, Transferable t) {
 
 		HexEditor e = (HexEditor)c;

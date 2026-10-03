@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import javax.swing.JTextField;
 import javax.swing.table.TableCellEditor;
+import javax.swing.text.BadLocationException;
 
 import org.fife.ui.SwingRunnerExtension;
 import org.junit.jupiter.api.Test;
@@ -49,7 +50,7 @@ class CellEditorTest {
 
 
 	@Test
-	void testStopCellEditing_emptyValue_returnsFalse() throws Exception {
+	void testStopCellEditing_emptyValue_returnsFalse() throws IOException, BadLocationException {
 
 		HexTable table = createTable();
 		table.setCellEditable(true);

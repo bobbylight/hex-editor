@@ -44,6 +44,7 @@ public class HexEditorDemoApplet extends JApplet {
 	/**
 	 * Initializes the applet.
 	 */
+	@Override
 	public void init() {
 		super.init();
 		try {

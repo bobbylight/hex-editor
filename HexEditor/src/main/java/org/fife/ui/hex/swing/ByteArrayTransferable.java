@@ -70,6 +70,7 @@ class ByteArrayTransferable implements Transferable {
 	 *         supported.
 	 * @see DataFlavor#getRepresentationClass()
 	 */
+	@Override
 	public Object getTransferData(DataFlavor flavor)
 			throws UnsupportedFlavorException {
 		if (flavor.equals(FLAVORS[0])) {
@@ -89,6 +90,7 @@ class ByteArrayTransferable implements Transferable {
 	 *
 	 * @return An array of data flavors in which this data can be transferred.
 	 */
+	@Override
 	public DataFlavor[] getTransferDataFlavors() {
 		return FLAVORS.clone();
 	}
@@ -100,6 +102,7 @@ class ByteArrayTransferable implements Transferable {
 	 * @param flavor The flavor to check.
 	 * @return Whether the specified flavor is supported.
 	 */
+	@Override
 	public boolean isDataFlavorSupported(DataFlavor flavor) {
         for (DataFlavor dataFlavor : FLAVORS) {
             if (flavor.equals(dataFlavor)) {
