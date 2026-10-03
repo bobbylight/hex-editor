@@ -4,6 +4,7 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import javax.swing.JComponent;
 import javax.swing.TransferHandler;
 
@@ -96,7 +97,7 @@ class HexEditorTransferHandler extends TransferHandler {
 				Object data = t.getTransferData(flavor);
 				if (flavor.equals(DataFlavor.stringFlavor)) {
 					String text = (String)data;
-					byte[] bytes = text.getBytes();
+					byte[] bytes = text.getBytes(Charset.defaultCharset());
 					e.replaceSelection(bytes);
 				}
 			} catch (UnsupportedFlavorException ufe) {

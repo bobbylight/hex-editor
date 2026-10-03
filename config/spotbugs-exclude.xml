@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+
+    <!-- HexTableModel intentionally holds a live reference to its parent
+         HexEditor so it can call back into it; this isn't a case of
+         mistakenly exposing internal state. -->
+    <Match>
+        <Class name="org.fife.ui.hex.swing.HexTableModel" />
+        <Field name="editor" />
+        <Bug pattern="EI_EXPOSE_REP2" />
+    </Match>
+
+</FindBugsFilter>

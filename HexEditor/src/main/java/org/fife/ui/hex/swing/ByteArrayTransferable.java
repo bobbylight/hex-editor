@@ -4,6 +4,7 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.StringReader;
+import java.nio.charset.Charset;
 
 
 /**
@@ -74,10 +75,10 @@ class ByteArrayTransferable implements Transferable {
 	public Object getTransferData(DataFlavor flavor)
 			throws UnsupportedFlavorException {
 		if (flavor.equals(FLAVORS[0])) {
-			return new String(bytes); // Use platform default charset.
+			return new String(bytes, Charset.defaultCharset());
 		}
 		else if (flavor.equals(FLAVORS[1])) {
-			return new StringReader(new String(bytes));
+			return new StringReader(new String(bytes, Charset.defaultCharset()));
 		}
 	    throw new UnsupportedFlavorException(flavor);
 	}

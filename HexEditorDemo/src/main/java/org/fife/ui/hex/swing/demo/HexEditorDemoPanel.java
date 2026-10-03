@@ -54,7 +54,7 @@ import org.fife.ui.hex.swing.HexEditor;
  * @author Robert Futrell
  * @version 1.0
  */
-class HexEditorDemoPanel extends JPanel implements ActionListener,
+final class HexEditorDemoPanel extends JPanel implements ActionListener,
 							HexEditorListener, SelectionChangedListener {
 
 	private static final long serialVersionUID = 1L;

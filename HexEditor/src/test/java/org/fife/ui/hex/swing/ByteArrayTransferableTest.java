@@ -4,6 +4,7 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.io.Reader;
+import java.nio.charset.Charset;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +34,7 @@ class ByteArrayTransferableTest {
 
 	@Test
 	void testConstructor_clonesInputArray() throws UnsupportedFlavorException {
-		byte[] bytes = "abc".getBytes();
+		byte[] bytes = "abc".getBytes(Charset.defaultCharset());
 		ByteArrayTransferable bat = new ByteArrayTransferable(0, bytes);
 		bytes[0] = 'z';
 		assertEquals("abc", bat.getTransferData(DataFlavor.stringFlavor));
@@ -71,7 +72,7 @@ class ByteArrayTransferableTest {
 
 	@Test
 	void testGetTransferData_stringFlavor() throws UnsupportedFlavorException {
-		byte[] bytes = "hello".getBytes();
+		byte[] bytes = "hello".getBytes(Charset.defaultCharset());
 		ByteArrayTransferable bat = new ByteArrayTransferable(0, bytes);
 		Object data = bat.getTransferData(DataFlavor.stringFlavor);
 		assertEquals("hello", data);
@@ -80,7 +81,7 @@ class ByteArrayTransferableTest {
 
 	@Test
 	void testGetTransferData_plainTextFlavor() throws UnsupportedFlavorException, IOException {
-		byte[] bytes = "hello".getBytes();
+		byte[] bytes = "hello".getBytes(Charset.defaultCharset());
 		ByteArrayTransferable bat = new ByteArrayTransferable(0, bytes);
 		Object data = bat.getTransferData(DataFlavor.plainTextFlavor);
         assertInstanceOf(Reader.class, data);
