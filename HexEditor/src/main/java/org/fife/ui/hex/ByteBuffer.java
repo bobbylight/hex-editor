@@ -29,6 +29,9 @@ package org.fife.ui.hex;
 import java.io.*;
 
 
+/**
+ * Stores a dynamic number of bytes.
+ */
 public class ByteBuffer {
 
 	/**
@@ -37,16 +40,33 @@ public class ByteBuffer {
 	private byte[] buffer;
 
 
+	/**
+	 * Creates an empty buffer of a given size.
+	 *
+	 * @param size The sie of the buffer.
+	 */
 	public ByteBuffer(int size) {
 		buffer = new byte[size];
 	}
 
 
+	/**
+	 * Creates a new buffer with the contents of a file.
+	 *
+	 * @param file The file to read.
+	 * @throws IOException If an IO error occurs.
+	 */
 	public ByteBuffer(String file) throws IOException {
 		this(new File(file));
 	}
 
 
+	/**
+	 * Creates a new buffer with the contents of a file.
+	 *
+	 * @param file The file to read.
+	 * @throws IOException If an IO error occurs.
+	 */
 	public ByteBuffer(File file) throws IOException {
 
 		int size = (int)file.length();
@@ -87,16 +107,34 @@ public class ByteBuffer {
 	}
 
 
+	/**
+	 * Returns a byte in this buffer.
+	 *
+	 * @param offset The offset of the byte.
+	 * @return The byte.
+	 */
 	public byte getByte(int offset) {
 		return buffer[offset];
 	}
 
 
+	/**
+	 * Returns the size of this buffer.
+	 *
+	 * @return The size of this buffer.
+	 */
 	public int getSize() {
 		return buffer.length;
 	}
 
 
+	/**
+	 * Inserts a bytes this buffer.
+	 *
+	 * @param offset The offset to insert at.
+	 * @param b The byte to insert.
+	 * @see #insertBytes(int, byte[])
+	 */
 	public void insertByte(int offset, byte b) {
 		byte[] buf2 = new byte[buffer.length+1];
 		System.arraycopy(buffer,0, buf2,0, offset);
@@ -106,6 +144,13 @@ public class ByteBuffer {
 	}
 
 
+	/**
+	 * Inserts bytes this buffer.
+	 *
+	 * @param offs The offset to insert at.
+	 * @param b The bytes to insert. If this is {@code null} or an empty array, nothing happens.
+	 * @see #insertByte(int, byte)
+	 */
 	public void insertBytes(int offs, byte[] b) {
 
 		if (b==null || b.length==0) {
@@ -121,6 +166,14 @@ public class ByteBuffer {
 	}
 
 
+	/**
+	 * Reads a region of bytes. The number of bytes read is
+	 * {@code min(buf.length, number-of-bytes-from-offset-to-end)}.
+	 *
+	 * @param offset The starting offset of the bytes to read.
+	 * @param buf The buffer to store the bytes in.
+	 * @return The number of bytes read.
+	 */
 	public int read(int offset, byte[] buf) {
 		if (buf==null) {
 			return -1;
@@ -131,11 +184,28 @@ public class ByteBuffer {
 	}
 
 
+	/**
+	 * Removes a region of bytes.
+	 *
+	 * @param offset The starting offset to remove.
+	 * @param len The count of bytes to remove.
+	 * @see #remove(int, int, byte[])
+	 */
 	public void remove(int offset, int len) {
 		remove(offset, len, null);
 	}
 
 
+	/**
+	 * Removes a region of bytes, optionally capturing what was removed.
+	 *
+	 * @param offset The starting offset to remove.
+	 * @param len The count of bytes to remove.
+	 * @param removed If non-{@code null} this is assumed to be large enough to contain the removed bytes.
+	 *        The removed bytes are copied into this array. If {@code null}, the operation succeeds,
+	 *        but removed bytes are simply not stored anywhere.
+	 * @see #remove(int, int)
+	 */
 	public void remove(int offset, int len, byte[] removed) {
 		if (removed!=null) {
 			System.arraycopy(buffer,offset, removed,0, len);
@@ -147,6 +217,12 @@ public class ByteBuffer {
 	}
 
 
+	/**
+	 * Sets the value of a byte.
+	 *
+	 * @param offset The byte to set.
+	 * @param b The new value.
+	 */
 	public void setByte(int offset, byte b) {
 		buffer[offset] = b;
 	}

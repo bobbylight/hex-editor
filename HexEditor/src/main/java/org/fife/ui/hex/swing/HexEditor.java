@@ -144,7 +144,7 @@ public class HexEditor extends JScrollPane {
 	/**
 	 * Registers a prospect who is interested when the text selection from the
 	 * hex editor becomes changed.
-	 * 
+	 *
 	 * @param l The concerning listener.
 	 * @see #removeSelectionChangedListener(SelectionChangedListener)
 	 */
@@ -455,7 +455,7 @@ public class HexEditor extends JScrollPane {
 	/**
 	 * Removes a listener that's no longer interested whether the text
 	 * selection from the hex editor becomes changed.
-	 * 
+	 *
 	 * @param l The concerning previous prospect.
 	 * @see #addSelectionChangedListener(SelectionChangedListener)
 	 */
@@ -572,7 +572,7 @@ public class HexEditor extends JScrollPane {
 	 * Sets what color should be used for the "ascii dump" selection.
 	 * This method fires a property change event of type
 	 * {@link #PROPERTY_ASCII_DUMP_HIGHLIGHT_COLOR}.
-	 * 
+	 *
 	 * @param c The color to use.
 	 * @see #getHighlightSelectionInAsciiDumpColor()
 	 * @see #setHighlightSelectionInAsciiDump(boolean)
@@ -637,7 +637,7 @@ public class HexEditor extends JScrollPane {
 	 * @param show Whether grid lines are visible.
 	 */
 	public void setShowGrid(boolean show) {
-		 // There is no "getShowGrid()" method.
+		// There is no "getShowGrid()" method.
 		if (show!=table.getShowHorizontalLines()) {
 			table.setShowGrid(show);
 			firePropertyChange(PROPERTY_SHOW_GRID, !show, show);

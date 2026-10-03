@@ -59,7 +59,7 @@ class HexEditorRowHeader extends JList<String> implements TableModelListener {
 	 *
 	 * @param table The table displaying the hex content.
 	 */
-	public HexEditorRowHeader(HexTable table) {
+	HexEditorRowHeader(HexTable table) {
 		this.table = table;
 		model = new RowHeaderListModel();
 		setModel(model);
@@ -124,7 +124,7 @@ class HexEditorRowHeader extends JList<String> implements TableModelListener {
 
 		private static final long serialVersionUID = 1L;
 
-		public CellRenderer() {
+		CellRenderer() {
 			setHorizontalAlignment(JLabel.RIGHT);
 		}
 
@@ -134,7 +134,6 @@ class HexEditorRowHeader extends JList<String> implements TableModelListener {
 			super.getListCellRendererComponent(list, value, index,
 												false, hasFocus);
 			setBorder(CELL_BORDER);
-//			setBackground(table.getBackground());
 			return this;
 		}
 
@@ -147,7 +146,7 @@ class HexEditorRowHeader extends JList<String> implements TableModelListener {
 	 * @author Robert Futrell
 	 * @version 1.0
 	 */
-	private static class RowHeaderListModel extends AbstractListModel<String> {
+	private static final class RowHeaderListModel extends AbstractListModel<String> {
 
 		private static final long serialVersionUID = 1L;
 
@@ -188,7 +187,7 @@ class HexEditorRowHeader extends JList<String> implements TableModelListener {
 
 		private static final long serialVersionUID = 1L;
 
-		public RowHeaderBorder() {
+		RowHeaderBorder() {
 			super(0,0,0,2);
 		}
 

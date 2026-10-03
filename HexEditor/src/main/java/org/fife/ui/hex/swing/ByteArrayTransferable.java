@@ -28,7 +28,7 @@ class ByteArrayTransferable implements Transferable {
 	 *
 	 * @param bytes The bytes to transfer.
 	 */
-	public ByteArrayTransferable(int offset, byte[] bytes) {
+	ByteArrayTransferable(int offset, byte[] bytes) {
 		this.offset = offset;
 		if (bytes!=null) {
 			this.bytes = bytes.clone();
@@ -83,8 +83,8 @@ class ByteArrayTransferable implements Transferable {
 
 
 	/**
-	 * Returns an array of DataFlavor objects indicating the flavors the data 
-	 * can be provided in.  The array is ordered according to preference for 
+	 * Returns an array of DataFlavor objects indicating the flavors the data
+	 * can be provided in.  The array is ordered according to preference for
 	 * providing the data (from most richly descriptive to least descriptive).
 	 *
 	 * @return An array of data flavors in which this data can be transferred.

@@ -146,6 +146,12 @@ public class HexTableModel extends AbstractTableModel {
 	}
 
 
+	/**
+	 * Returns the name of a column.
+	 *
+	 * @param col The column being queried
+	 * @return The column's name.
+	 */
 	public String getColumnName(int col) {
 		return columnNames[col];
 	}
@@ -360,7 +366,7 @@ public class HexTableModel extends AbstractTableModel {
 		private byte oldVal;
 		private byte newVal;
 
-		public ByteChangedUndoableEdit(int offs, byte oldVal, byte newVal) {
+		ByteChangedUndoableEdit(int offs, byte oldVal, byte newVal) {
 			this.offs = offs;
 			this.oldVal = oldVal;
 			this.newVal = newVal;
@@ -396,7 +402,7 @@ public class HexTableModel extends AbstractTableModel {
 
 	/**
 	 * An "undoable event" representing a range of bytes being replaced
-	 * (or just removed or inserted)
+	 * (or just removed or inserted).
 	 *
 	 * @author Robert Futrell
 	 * @version 1.0
@@ -409,8 +415,7 @@ public class HexTableModel extends AbstractTableModel {
 		private byte[] removed;
 		private byte[] added;
 
-		public BytesReplacedUndoableEdit(int offs, byte[] removed,
-										byte[] added) {
+		BytesReplacedUndoableEdit(int offs, byte[] removed, byte[] added) {
 			this.offs = offs;
 			this.removed = removed;
 			this.added = added;

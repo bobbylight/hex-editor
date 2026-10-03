@@ -41,6 +41,9 @@ public class HexEditorDemoApplet extends JApplet {
 	private static final long serialVersionUID = 1L;
 
 
+	/**
+	 * Initializes the applet.
+	 */
 	public void init() {
 		super.init();
 		try {

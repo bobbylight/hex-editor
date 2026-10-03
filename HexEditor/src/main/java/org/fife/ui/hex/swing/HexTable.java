@@ -78,7 +78,7 @@ class HexTable extends JTable {
 	 * @param hexEditor The parent hex editor component.
 	 * @param model The table model to use.
 	 */
-	public HexTable(HexEditor hexEditor, HexTableModel model) {
+	HexTable(HexEditor hexEditor, HexTableModel model) {
 
 		super(model);
 		this.hexEditor = hexEditor;
@@ -86,7 +86,7 @@ class HexTable extends JTable {
 		enableEvents(AWTEvent.KEY_EVENT_MASK);
 		setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		setFont(new Font("Monospaced", Font.PLAIN, 14));
-//setRowHeight(28);
+		//setRowHeight(28);
 		setCellSelectionEnabled(true);
 		setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		setDefaultEditor(Object.class, cellEditor);
@@ -120,7 +120,7 @@ class HexTable extends JTable {
 	/**
 	 * Registers a prospect who is interested when the text selection from the
 	 * hex editor becomes changed.
-	 * 
+	 *
 	 * @param l The concerning listener.
 	 * @see #removeSelectionChangedListener(SelectionChangedListener)
 	 */
@@ -133,7 +133,7 @@ class HexTable extends JTable {
 	 * Returns the column for the cell containing data that is the closest
 	 * to the specified cell.  This is used when, for example, the user clicks
 	 * on an "empty" cell in the last row of the table.
-	 *  
+	 *
 	 * @param row The row of the cell clicked on.
 	 * @param col The column of the cell clicked on.
 	 * @return The column of the closest cell containing data.
@@ -191,11 +191,11 @@ class HexTable extends JTable {
 	 */
 	public void changeSelection(int row, int col, boolean toggle,
 								boolean extend) {
-	    
-	    // remind previous selection range
+
+		// remind previous selection range
 		int prevSmallest = getSmallestSelectionIndex();
 		int prevLargest = getLargestSelectionIndex();
-	    
+
 		// Don't allow the user to select the "ascii dump" or any
 		// empty cells in the last row of the table.
 		col = adjustColumn(row, col);
@@ -213,7 +213,7 @@ class HexTable extends JTable {
 			anchorSelectionIndex = leadSelectionIndex = cellToOffset(row, col);
 		}
 
-        // Scroll after changing the selection as blit scrolling is
+		// Scroll after changing the selection as blit scrolling is
 		// immediate, so that if we cause the repaint after the scroll we
 		// end up painting everything!
 		if (getAutoscrolls()) {
@@ -277,11 +277,11 @@ class HexTable extends JTable {
 
 	/**
 	 * Notifies any listeners that the selection has changed.
-	 * 
-	 * @see #addSelectionChangedListener(SelectionChangedListener)
-	 * @see #removeSelectionChangedListener(SelectionChangedListener)
+	 *
 	 * @param prevSmallest The previous selection start index.
 	 * @param prevLargest The previous selectio end index.
+	 * @see #addSelectionChangedListener(SelectionChangedListener)
+	 * @see #removeSelectionChangedListener(SelectionChangedListener)
 	 */
 	private void fireSelectionChangedEvent(int prevSmallest, int prevLargest) {
 
@@ -432,7 +432,7 @@ class HexTable extends JTable {
 	}
 
 
-	protected void processKeyEvent (java.awt.event.KeyEvent e) {
+	protected void processKeyEvent(KeyEvent e) {
 
 		// TODO: Convert into Actions and put into InputMap/ActionMap?
 		if (e.getID()==KeyEvent.KEY_PRESSED) {
@@ -524,12 +524,12 @@ class HexTable extends JTable {
 		// TODO: Repaint only selected lines.
 		repaint();
 	}
-    
+
 
 	/**
 	 * Removes a listener that's no longer interested whether the text
 	 * selection from the hex editor becomes changed.
-	 * 
+	 *
 	 * @param l The concerning previous prospect.
 	 * @see #addSelectionChangedListener(SelectionChangedListener)
 	 */
@@ -587,14 +587,14 @@ class HexTable extends JTable {
 
 		startOffs = Math.max(0, startOffs);
 		startOffs= Math.min(startOffs, model.getByteCount()-1);
-		
+
 		// Clear the old selection (may not be necessary).
 		repaintSelection();
 
 		anchorSelectionIndex = startOffs;
 		leadSelectionIndex = endOffs;
 
-        // Scroll after changing the selection as blit scrolling is
+		// Scroll after changing the selection as blit scrolling is
 		// immediate, so that if we cause the repaint after the scroll we
 		// end up painting everything!
 		if (getAutoscrolls()) {
@@ -636,8 +636,8 @@ class HexTable extends JTable {
 		private static final long serialVersionUID = 1L;
 
 		private boolean editable;
-		
-		public CellEditor() {
+
+		CellEditor() {
 			super(new JTextField());
 			AbstractDocument doc = (AbstractDocument)
 						((JTextComponent)editorComponent).getDocument();
@@ -698,7 +698,7 @@ class HexTable extends JTable {
 		private Point highlight;
 		private Map<?, ?> desktopAAHints;
 
-		public CellRenderer() {
+		CellRenderer() {
 			highlight = new Point();
 			desktopAAHints = getDesktopAntiAliasHints();
 		}
@@ -787,7 +787,7 @@ class HexTable extends JTable {
 	 * @author Robert Futrell
 	 * @version 1.0
 	 */
-	private static class EditorDocumentFilter extends DocumentFilter {
+	private static final class EditorDocumentFilter extends DocumentFilter {
 
 		private boolean ensureByteRepresented(String str) {
 			try {

@@ -83,18 +83,17 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	private Action undoAction;
 	private Action redoAction;
 
-	private static final String MSG = "org.fife.ui.hex.swing.demo.HexEditorDemoPanel";
-	private static final ResourceBundle msg = ResourceBundle.getBundle(MSG);
+	private static final ResourceBundle MSG = ResourceBundle.getBundle("org.fife.ui.hex.swing.demo.HexEditorDemoPanel");
 
 
 	/**
 	 * Constructor.
 	 */
-	public HexEditorDemoPanel() {
+	HexEditorDemoPanel() {
 
 		setLayout(new BorderLayout());
 
-		createActions(msg);
+		createActions(MSG);
 		add(createToolBar(), BorderLayout.NORTH);
 
 		JPanel temp = new JPanel(new BorderLayout());
@@ -208,7 +207,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 		}
 		else if (source==lowBytePaddingCB) {
 		    editor.setPadLowBytes(lowBytePaddingCB.isSelected());
-		} 
+		}
 		else if (source==cellEditableCB) {
 			editor.setCellEditable(cellEditableCB.isSelected());
 		}
@@ -329,7 +328,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 
 
 	private String getInfoString(String key, int offs, int param) {
-		String text = msg.getString(key);
+		String text = MSG.getString(key);
 		text = MessageFormat.format(text,
 				new Object[] { offs, param });
 		return text;
@@ -337,7 +336,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 
 
 	private String getInfoString(String key, int offs, int param1, int param2) {
-		String text = msg.getString(key);
+		String text = MSG.getString(key);
 		text = MessageFormat.format(text,
 				new Object[] { offs, param1, param2 });
 		return text;
@@ -369,8 +368,8 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 			}
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
-			String message = msg.getString("Error.Title");
-			String title = msg.getString("Error.Desc");
+			String message = MSG.getString("Error.Title");
+			String title = MSG.getString("Error.Desc");
 			title = MessageFormat.format(title,
 										new Object[] { ioe.toString() });
 			JOptionPane.showMessageDialog(this, message, title,
@@ -410,7 +409,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 		}
 		infoField.setText(text);
 
-		text = msg.getString("SizeField");
+		text = MSG.getString("SizeField");
 		text = MessageFormat.format(text,
 				new Object[] { e.getHexEditor().getByteCount() });
 		sizeField.setText(text);
@@ -465,8 +464,8 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 
 		private static final long serialVersionUID = 1L;
 
-		public ActionBase() {
-			String name = msg.getString(getNameKey());
+		ActionBase() {
+			String name = MSG.getString(getNameKey());
 			putValue(Action.NAME, name);
 			putValue(Action.SHORT_DESCRIPTION, name);
 			ImageIcon icon = new ImageIcon(getImage(getIconKey()));
@@ -486,7 +485,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	 * @author Robert Futrell
 	 * @version 1.0
 	 */
-	private static class ColorCellRenderer extends DefaultListCellRenderer
+	private static final class ColorCellRenderer extends DefaultListCellRenderer
 											implements Icon {
 
 		private static final long serialVersionUID = 1L;
@@ -525,47 +524,47 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	}
 
 
-	private class ConfigPanel extends JPanel {
+	private final class ConfigPanel extends JPanel {
 
 		private static final long serialVersionUID = 1L;
 
-		public ConfigPanel() {
+		ConfigPanel() {
 
 			setLayout(new BorderLayout());
 			setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
 			JPanel temp = new JPanel(new GridLayout(3,3, 5,5));
-	
-			colHeaderCB = new JCheckBox(msg.getString("ColHeaderCB"), true);
+
+			colHeaderCB = new JCheckBox(MSG.getString("ColHeaderCB"), true);
 			colHeaderCB.addActionListener(HexEditorDemoPanel.this);
 			temp.add(colHeaderCB);
 
-			rowHeaderCB = new JCheckBox(msg.getString("RowHeaderCB"), true);
+			rowHeaderCB = new JCheckBox(MSG.getString("RowHeaderCB"), true);
 			rowHeaderCB.addActionListener(HexEditorDemoPanel.this);
 			temp.add(rowHeaderCB);
 
-			showGridCB = new JCheckBox(msg.getString("GridLinesCB"), false);
+			showGridCB = new JCheckBox(MSG.getString("GridLinesCB"), false);
 			showGridCB.addActionListener(HexEditorDemoPanel.this);
 			temp.add(showGridCB);
 
-			altRowBGCB = new JCheckBox(msg.getString("AlternateRowBG"), false);
+			altRowBGCB = new JCheckBox(MSG.getString("AlternateRowBG"), false);
 			altRowBGCB.addActionListener(HexEditorDemoPanel.this);
 			temp.add(altRowBGCB);
 
-			altColBGCB = new JCheckBox(msg.getString("AlternateColBG"), false);
+			altColBGCB = new JCheckBox(MSG.getString("AlternateColBG"), false);
 			altColBGCB.addActionListener(HexEditorDemoPanel.this);
 			temp.add(altColBGCB);
 
-            lowBytePaddingCB = new JCheckBox(msg.getString("PadLowBytesCB"), true);
+            lowBytePaddingCB = new JCheckBox(MSG.getString("PadLowBytesCB"), true);
             lowBytePaddingCB.addActionListener(HexEditorDemoPanel.this);
             temp.add(lowBytePaddingCB);
 
-            cellEditableCB = new JCheckBox(msg.getString("CellEditable"), true);
+            cellEditableCB = new JCheckBox(MSG.getString("CellEditable"), true);
             cellEditableCB.addActionListener(HexEditorDemoPanel.this);
             temp.add(cellEditableCB);
-            
+
 			highlightAsciiSelCB = new JCheckBox(
-									msg.getString("HighlightAsciiSel"), true);
+									MSG.getString("HighlightAsciiSel"), true);
 			highlightAsciiSelCB.addActionListener(HexEditorDemoPanel.this);
 			temp.add(highlightAsciiSelCB);
 
@@ -576,7 +575,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 			highlightAsciiSelCombo.addItem(new Color(224,224,224));
 			highlightAsciiSelCombo.addActionListener(HexEditorDemoPanel.this);
 			JPanel temp2 = new JPanel(new BorderLayout());
-			String text = msg.getString("HighlightColor");
+			String text = MSG.getString("HighlightColor");
 			temp2.add(new JLabel(text), BorderLayout.LINE_START);
 			temp2.add(highlightAsciiSelCombo);
 			temp.add(temp2);
@@ -584,7 +583,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 			add(temp);
 
 			temp = new JPanel(new BorderLayout());
-			temp.add(new JLabel(msg.getString("LafLabel")),
+			temp.add(new JLabel(MSG.getString("LafLabel")),
 									BorderLayout.LINE_START);
 			lafCombo = new JComboBox<>();
 			lafCombo.addItem("System");
@@ -610,7 +609,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	 * @author Robert Futrell
 	 * @version 1.0
 	 */
-	private class CopyAction extends ActionBase {
+	private final class CopyAction extends ActionBase {
 
 		private static final long serialVersionUID = 1L;
 
@@ -636,7 +635,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	 * @author Robert Futrell
 	 * @version 1.0
 	 */
-	private class CutAction extends ActionBase {
+	private final class CutAction extends ActionBase {
 
 		private static final long serialVersionUID = 1L;
 
@@ -661,7 +660,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	 * @author Robert Futrell
 	 * @version 1.0
 	 */
-	private class DeleteAction extends ActionBase {
+	private final class DeleteAction extends ActionBase {
 
 		private static final long serialVersionUID = 1L;
 
@@ -686,7 +685,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	 * @author Robert Futrell
 	 * @version 1.0
 	 */
-	private class OpenAction extends ActionBase {
+	private final class OpenAction extends ActionBase {
 
 		private static final long serialVersionUID = 1L;
 
@@ -712,7 +711,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	 * @author Robert Futrell
 	 * @version 1.0
 	 */
-	private class PasteAction extends ActionBase {
+	private final class PasteAction extends ActionBase {
 
 		private static final long serialVersionUID = 1L;
 
@@ -737,7 +736,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	 * @author Robert Futrell
 	 * @version 1.0
 	 */
-	private class RedoAction extends ActionBase {
+	private final class RedoAction extends ActionBase {
 
 		private static final long serialVersionUID = 1L;
 
@@ -762,7 +761,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	 * @author Robert Futrell
 	 * @version 1.0
 	 */
-	private class UndoAction extends ActionBase {
+	private final class UndoAction extends ActionBase {
 
 		private static final long serialVersionUID = 1L;
 
