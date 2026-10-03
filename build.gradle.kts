@@ -18,8 +18,15 @@ subprojects {
     apply(plugin = "checkstyle")
 
     java {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        toolchain {
+            // Build with a modern JDK regardless of what's on PATH.
+            languageVersion.set(JavaLanguageVersion.of(25))
+        }
+    }
+
+    tasks.withType<JavaCompile>().configureEach {
+        // Use only Java 8 APIs and generate Java 8-compatible bytecode.
+        options.release.set(8)
     }
 
     configure<CheckstyleExtension> {
