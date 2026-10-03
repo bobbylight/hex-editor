@@ -33,7 +33,7 @@ import java.nio.file.Files;
 /**
  * Stores a dynamic number of bytes.
  */
-public class ByteBuffer {
+public final class ByteBuffer {
 
 	/**
 	 * The byte buffer that contains the document content.

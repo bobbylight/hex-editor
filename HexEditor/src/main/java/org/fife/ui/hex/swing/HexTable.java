@@ -493,6 +493,7 @@ class HexTable extends JTable {
 					changeSelectionByOffset(offs, extend);
 					e.consume();
 					break;
+				default: break;
 			}
 		}
 

@@ -37,7 +37,7 @@ import javax.swing.UIManager;
  * @author Robert Futrell
  * @version 1.0
  */
-public class HexEditorDemoApp extends JFrame {
+public final class HexEditorDemoApp extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 

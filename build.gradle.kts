@@ -1,7 +1,10 @@
 import org.gradle.api.plugins.quality.CheckstyleExtension
+import com.github.spotbugs.snom.SpotBugsExtension
+import com.github.spotbugs.snom.SpotBugsTask
 
 plugins {
     java
+    id("com.github.spotbugs") version "6.5.9" apply false
 }
 
 allprojects {
@@ -16,6 +19,7 @@ allprojects {
 subprojects {
     apply(plugin = "java")
     apply(plugin = "checkstyle")
+    apply(plugin = "com.github.spotbugs")
 
     java {
         toolchain {
@@ -32,5 +36,18 @@ subprojects {
     configure<CheckstyleExtension> {
         toolVersion = "13.8.0"
         configDirectory.set(file("$rootDir/config/checkstyle"))
+    }
+
+    configure<SpotBugsExtension> {
+        excludeFilter.set(file("$rootDir/config/spotbugs-exclude.xml"))
+    }
+
+    tasks.withType<SpotBugsTask>().configureEach {
+        reports.create("html") {
+            required.set(true)
+        }
+        reports.create("xml") {
+            required.set(false)
+        }
     }
 }
