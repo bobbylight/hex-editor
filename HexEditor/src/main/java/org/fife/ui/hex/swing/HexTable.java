@@ -189,8 +189,8 @@ class HexTable extends JTable {
 	 * @see #setSelectedRows(int, int)
 	 * @see #setSelectionByOffsets(int, int)
 	 */
-	public void changeSelection(int row, int col, boolean toggle,
-								boolean extend) {
+	@Override
+	public void changeSelection(int row, int col, boolean toggle, boolean extend) {
 
 		// remind previous selection range
 		int prevSmallest = getSmallestSelectionIndex();
@@ -250,6 +250,7 @@ class HexTable extends JTable {
 	 * Clears the selection.  The "lead" of the selection is set back to the
 	 * position of the "anchor."
 	 */
+	@Override
 	public void clearSelection() {
 		if (anchorSelectionIndex>-1) { // Always true unless an error
 			leadSelectionIndex = anchorSelectionIndex;
@@ -362,11 +363,13 @@ class HexTable extends JTable {
 	}
 
 
+	@Override
 	public boolean isCellEditable(int row, int col) {
 		return cellToOffset(row, col)>-1;
 	}
 
 
+	@Override
 	public boolean isCellSelected(int row, int col) {
 		int offset = cellToOffset(row, col);
 		if (offset==-1) { // "Ascii dump" column
@@ -421,8 +424,8 @@ class HexTable extends JTable {
 	}
 
 
-	public Component prepareRenderer(TableCellRenderer renderer, int row,
-									int column) {
+	@Override
+	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
 		Object value = getValueAt(row, column);
 		boolean isSelected = isCellSelected(row, column);
 		boolean hasFocus = cellToOffset(row, column)==leadSelectionIndex;
@@ -432,6 +435,7 @@ class HexTable extends JTable {
 	}
 
 
+	@Override
 	protected void processKeyEvent(KeyEvent e) {
 
 		// TODO: Convert into Actions and put into InputMap/ActionMap?
@@ -646,16 +650,19 @@ class HexTable extends JTable {
 			editable = true;
 		}
 
+		@Override
 		public void focusGained(FocusEvent e) {
 			JTextField textField = (JTextField)getComponent();
 			textField.selectAll();
 		}
 
+		@Override
 		public void focusLost(FocusEvent e) {
 		}
 
-		public Component getTableCellEditorComponent(JTable table, Object value,
-				 					boolean selected, int row, int column) {
+		@Override
+		public Component getTableCellEditorComponent(JTable table, Object value, boolean selected, int row,
+		                                              int column) {
 			if (editable) {
 				return super.getTableCellEditorComponent(table, value, selected,
 									row, column);
@@ -667,6 +674,7 @@ class HexTable extends JTable {
 			this.editable = editable;
 		}
 
+		@Override
 		public boolean stopCellEditing() {
 			// Prevent the user from entering empty string as a value.
 			String value = (String)getCellEditorValue();
@@ -703,9 +711,9 @@ class HexTable extends JTable {
 			desktopAAHints = getDesktopAntiAliasHints();
 		}
 
-		public Component getTableCellRendererComponent(JTable table,
-						Object value, boolean selected, boolean focus,
-						int row, int column) {
+		@Override
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focus,
+		                                                int row, int column) {
 
 			super.getTableCellRendererComponent(table, value, selected, focus,
 												row, column);
@@ -742,6 +750,7 @@ class HexTable extends JTable {
 
 		}
 
+		@Override
 		protected void paintComponent(Graphics g) {
 
 			g.setColor(getBackground());
@@ -802,8 +811,9 @@ class HexTable extends JTable {
 			return true;
 		}
 
-		public void insertString(FilterBypass fb, int offs, String string,
-								AttributeSet attr) throws BadLocationException {
+		@Override
+		public void insertString(FilterBypass fb, int offs, String string, AttributeSet attr)
+		                         throws BadLocationException {
 			Document doc = fb.getDocument();
 			String temp = doc.getText(0, offs) + string +
 								doc.getText(offs, doc.getLength()-offs);
@@ -812,8 +822,9 @@ class HexTable extends JTable {
 			}
 		}
 
-		public void replace(FilterBypass fb, int offs, int len, String text,
-							AttributeSet attrs) throws BadLocationException {
+		@Override
+		public void replace(FilterBypass fb, int offs, int len, String text, AttributeSet attrs)
+		                    throws BadLocationException {
 			Document doc = fb.getDocument();
 			String temp = doc.getText(0, offs) + text +
 						doc.getText(offs+len, doc.getLength()-(offs+len));

@@ -141,6 +141,7 @@ public class HexTableModel extends AbstractTableModel {
 	 *
 	 * @return The number of columns to display.
 	 */
+	@Override
 	public int getColumnCount() {
 		return getBytesPerRow() + 1;
 	}
@@ -152,6 +153,7 @@ public class HexTableModel extends AbstractTableModel {
 	 * @param col The column being queried
 	 * @return The column's name.
 	 */
+	@Override
 	public String getColumnName(int col) {
 		return columnNames[col];
 	}
@@ -162,6 +164,7 @@ public class HexTableModel extends AbstractTableModel {
 	 *
 	 * @return The number of rows to display.
 	 */
+	@Override
 	public int getRowCount() {
 		return doc.getSize()/bytesPerRow +
 				(doc.getSize()%bytesPerRow>0 ? 1 : 0);
@@ -176,6 +179,7 @@ public class HexTableModel extends AbstractTableModel {
 	 * @param col The column of the cell.
 	 * @return The value to display.
 	 */
+	@Override
 	public Object getValueAt(int row, int col) {
 
 		if (col==bytesPerRow) {
@@ -315,6 +319,7 @@ public class HexTableModel extends AbstractTableModel {
 	 * @param row The row of the cell to change.
 	 * @param col The column of the cell to change.
 	 */
+	@Override
 	public void setValueAt(Object value, int row, int col) {
 		byte b = (byte)Integer.parseInt((String)value, 16);
 		int offset = editor.cellToOffset(row, col);
@@ -372,6 +377,7 @@ public class HexTableModel extends AbstractTableModel {
 			this.newVal = newVal;
 		}
 
+		@Override
 		public void undo() {
 			super.undo();
 			if (getByteCount()<offs) {
@@ -380,6 +386,7 @@ public class HexTableModel extends AbstractTableModel {
 			setValueImpl(offs, oldVal);
 		}
 
+		@Override
 		public void redo() {
 			super.redo();
 			if (getByteCount()<offs) {
@@ -421,6 +428,7 @@ public class HexTableModel extends AbstractTableModel {
 			this.added = added;
 		}
 
+		@Override
 		public void undo() {
 			super.undo();
 			if (getByteCount()<offs) {
@@ -429,6 +437,7 @@ public class HexTableModel extends AbstractTableModel {
 			removeAndAdd(added, removed);
 		}
 
+		@Override
 		public void redo() {
 			super.redo();
 			if (getByteCount()<offs) {

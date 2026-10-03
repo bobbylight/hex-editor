@@ -50,7 +50,7 @@ class EditorDocumentFilterTest {
 
 
 	@Test
-	void testInsertString_intoEmptyField_insertsCleanly() throws Exception {
+	void testInsertString_intoEmptyField_insertsCleanly() throws IOException, BadLocationException {
 		AbstractDocument doc = getEditorDocument("");
 		doc.insertString(0, "5", null);
 		assertEquals("5", getText(doc));
@@ -58,7 +58,7 @@ class EditorDocumentFilterTest {
 
 
 	@Test
-	void testInsertString_atEndOfExistingText_appendsCleanly() throws Exception {
+	void testInsertString_atEndOfExistingText_appendsCleanly() throws IOException, BadLocationException {
 		// Regression test: insertString() used to validate against a
 		// reconstructed "temp" string (prefix + new text + suffix) but then
 		// insert that *whole* temp string instead of just the new text,
@@ -71,7 +71,7 @@ class EditorDocumentFilterTest {
 
 
 	@Test
-	void testInsertString_atStartOfExistingText_prependsCleanly() throws Exception {
+	void testInsertString_atStartOfExistingText_prependsCleanly() throws IOException, BadLocationException {
 		AbstractDocument doc = getEditorDocument("0");
 		doc.insertString(0, "f", null);
 		assertEquals("f0", getText(doc));
@@ -79,7 +79,7 @@ class EditorDocumentFilterTest {
 
 
 	@Test
-	void testInsertString_resultingInNonHexText_isRejected() throws Exception {
+	void testInsertString_resultingInNonHexText_isRejected() throws IOException, BadLocationException {
 		Document doc = getEditorDocument("0");
 		doc.insertString(1, "g", null);
 		assertEquals("0", getText(doc));
@@ -87,7 +87,7 @@ class EditorDocumentFilterTest {
 
 
 	@Test
-	void testInsertString_negativeSign_isRejected() throws Exception {
+	void testInsertString_negativeSign_isRejected() throws IOException, BadLocationException {
 		// Integer.parseInt(str, 16) treats a leading "-" as a sign rather
 		// than an invalid digit, so e.g. "-5" parses successfully to -5 -
 		// exercising the explicit "i < 0" range check, not just the
@@ -99,7 +99,7 @@ class EditorDocumentFilterTest {
 
 
 	@Test
-	void testInsertString_resultingInValueAboveByteRange_isRejected() throws Exception {
+	void testInsertString_resultingInValueAboveByteRange_isRejected() throws IOException, BadLocationException {
 		// "10" is a valid hex value (0x10) but "100" (0x100) exceeds a byte.
 		Document doc = getEditorDocument("10");
 		doc.insertString(2, "0", null);
@@ -108,7 +108,7 @@ class EditorDocumentFilterTest {
 
 
 	@Test
-	void testReplace_resultingInValidHexByte_isAccepted() throws Exception {
+	void testReplace_resultingInValidHexByte_isAccepted() throws IOException, BadLocationException {
 		AbstractDocument doc = getEditorDocument("a");
 		doc.replace(0, 1, "f", null);
 		assertEquals("f", getText(doc));
@@ -116,7 +116,7 @@ class EditorDocumentFilterTest {
 
 
 	@Test
-	void testReplace_resultingInNonHexText_isRejected() throws Exception {
+	void testReplace_resultingInNonHexText_isRejected() throws IOException, BadLocationException {
 		AbstractDocument doc = getEditorDocument("a");
 		doc.replace(0, 1, "z", null);
 		assertEquals("a", getText(doc));

@@ -144,6 +144,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	 *
 	 * @param e The event that occurred.
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 
 		Object source = e.getSource();
@@ -383,6 +384,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	 *
 	 * @param e The event.
 	 */
+	@Override
 	public void hexBytesChanged(HexEditorEvent e) {
 
 		String text;
@@ -446,6 +448,7 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 	 *
 	 * @param e An object describing the selection.
 	 */
+	@Override
 	public void selectionChanged(SelectionChangedEvent e) {
 		int offs = e.getNewSelecStart();
 		int count = e.getNewSelecEnd() - offs + 1;
@@ -492,8 +495,9 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 
 		private Color c;
 
-		public Component getListCellRendererComponent(JList list, Object value,
-							int index, boolean selected, boolean hasFocus) {
+		@Override
+		public Component getListCellRendererComponent(JList list, Object value, int index, boolean selected,
+		                                               boolean hasFocus) {
 			super.getListCellRendererComponent(list, null, index, selected,
 												hasFocus);
 			if (value instanceof Color) {
@@ -502,18 +506,22 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 			return this;
 		}
 
+		@Override
 		public Icon getIcon() {
 			return this;
 		}
 
+		@Override
 		public int getIconHeight() {
 			return 16;
 		}
 
+		@Override
 		public int getIconWidth() {
 			return 16;
 		}
 
+		@Override
 		public void paintIcon(Component comp, Graphics g, int x, int y) {
 			g.setColor(c);
 			g.fillRect(x, y, getIconWidth(), getIconHeight());
@@ -613,14 +621,17 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			editor.copy();
 		}
 
+		@Override
 		protected String getNameKey() {
 			return "Action.Copy.Name";
 		}
 
+		@Override
 		protected String getIconKey() {
 			return "copy.gif";
 		}
@@ -639,14 +650,17 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			editor.cut();
 		}
 
+		@Override
 		protected String getNameKey() {
 			return "Action.Cut.Name";
 		}
 
+		@Override
 		protected String getIconKey() {
 			return "cut.gif";
 		}
@@ -664,14 +678,17 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			editor.delete();
 		}
 
+		@Override
 		protected String getNameKey() {
 			return "Action.Delete.Name";
 		}
 
+		@Override
 		protected String getIconKey() {
 			return "delete.gif";
 		}
@@ -689,14 +706,17 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			doOpen();
 		}
 
+		@Override
 		protected String getNameKey() {
 			return "Action.Open.Name";
 		}
 
+		@Override
 		protected String getIconKey() {
 			return "open.gif";
 		}
@@ -715,14 +735,17 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			editor.paste();
 		}
 
+		@Override
 		protected String getNameKey() {
 			return "Action.Paste.Name";
 		}
 
+		@Override
 		protected String getIconKey() {
 			return "paste.gif";
 		}
@@ -740,14 +763,17 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			editor.redo();
 		}
 
+		@Override
 		protected String getNameKey() {
 			return "Action.Redo.Name";
 		}
 
+		@Override
 		protected String getIconKey() {
 			return "redo.gif";
 		}
@@ -765,14 +791,17 @@ class HexEditorDemoPanel extends JPanel implements ActionListener,
 
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			editor.undo();
 		}
 
+		@Override
 		protected String getNameKey() {
 			return "Action.Undo.Name";
 		}
 
+		@Override
 		protected String getIconKey() {
 			return "undo.gif";
 		}

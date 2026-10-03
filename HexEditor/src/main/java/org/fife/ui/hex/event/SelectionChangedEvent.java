@@ -69,8 +69,8 @@ public class SelectionChangedEvent extends EventObject {
 	 * @param newSelecStart The new selection start index.
 	 * @param newSelecEnd The new selection end index.
 	 */
-	public SelectionChangedEvent(Object source, int previousSelecStart,
-			int previousSelecEnd, int newSelecStart, int newSelecEnd) {
+	public SelectionChangedEvent(Object source, int previousSelecStart, int previousSelecEnd, int newSelecStart,
+	                              int newSelecEnd) {
 		super(source);
 		this.previousSelecStart = previousSelecStart;
 		this.previousSelecEnd = previousSelecEnd;

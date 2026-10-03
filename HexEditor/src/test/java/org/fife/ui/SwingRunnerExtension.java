@@ -20,7 +20,8 @@ public class SwingRunnerExtension implements InvocationInterceptor {
 	@Override
 	public void interceptTestMethod(InvocationInterceptor.Invocation<Void> invocation,
 									ReflectiveInvocationContext<Method> invocationContext,
-									ExtensionContext extensionContext) throws Throwable {
+									ExtensionContext extensionContext)
+									throws Throwable {
 
 		AtomicReference<Throwable> throwable = new AtomicReference<>();
 

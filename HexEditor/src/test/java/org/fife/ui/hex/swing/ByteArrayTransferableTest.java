@@ -2,6 +2,7 @@ package org.fife.ui.hex.swing;
 
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 import java.io.Reader;
 
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,7 @@ class ByteArrayTransferableTest {
 
 
 	@Test
-	void testConstructor_clonesInputArray() throws Exception {
+	void testConstructor_clonesInputArray() throws UnsupportedFlavorException {
 		byte[] bytes = "abc".getBytes();
 		ByteArrayTransferable bat = new ByteArrayTransferable(0, bytes);
 		bytes[0] = 'z';
@@ -69,7 +70,7 @@ class ByteArrayTransferableTest {
 
 
 	@Test
-	void testGetTransferData_stringFlavor() throws Exception {
+	void testGetTransferData_stringFlavor() throws UnsupportedFlavorException {
 		byte[] bytes = "hello".getBytes();
 		ByteArrayTransferable bat = new ByteArrayTransferable(0, bytes);
 		Object data = bat.getTransferData(DataFlavor.stringFlavor);
@@ -78,7 +79,7 @@ class ByteArrayTransferableTest {
 
 
 	@Test
-	void testGetTransferData_plainTextFlavor() throws Exception {
+	void testGetTransferData_plainTextFlavor() throws UnsupportedFlavorException, IOException {
 		byte[] bytes = "hello".getBytes();
 		ByteArrayTransferable bat = new ByteArrayTransferable(0, bytes);
 		Object data = bat.getTransferData(DataFlavor.plainTextFlavor);

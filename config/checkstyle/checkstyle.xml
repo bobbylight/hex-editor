@@ -62,7 +62,7 @@
     <!-- Checks for Size Violations.                             -->
     <!-- See https://checkstyle.sourceforge.io/config_sizes.html -->
     <module name="FileLength">
-        <property name="max" value="830"/>
+        <property name="max" value="840"/>
     </module>
 
     <module name="LineEnding"/>
